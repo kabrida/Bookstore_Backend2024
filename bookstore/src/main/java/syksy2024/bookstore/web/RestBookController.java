@@ -27,7 +27,7 @@ public class RestBookController {
     @Autowired
     CategoryRepository cRepo;
 
-    @GetMapping("/allbooks")
+    @GetMapping("/api/books")
     public Iterable<Book> getAllBooks() {
         log.info("Fetch all books from the database to client as json");
         return bRepo.findAll();
@@ -57,7 +57,7 @@ public class RestBookController {
     public Iterable<Book> deleteBook(@PathVariable("id") Long bookId) {
         log.info("Delete book " + bookId);
         bRepo.deleteById(bookId);
-        return bRepo.findAll();
+        return bRepo.findAll(); 
     }
 
 }

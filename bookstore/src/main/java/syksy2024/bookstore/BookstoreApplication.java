@@ -7,7 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
+import syksy2024.bookstore.model.AppUser;
+import syksy2024.bookstore.model.AppUserRepository;
 import syksy2024.bookstore.model.Book;
 import syksy2024.bookstore.model.BookRepository;
 import syksy2024.bookstore.model.Category;
@@ -22,7 +23,7 @@ public class BookstoreApplication {
 	}
 
 		@Bean
-	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository cRepository) {
+	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository cRepository, AppUserRepository AUrepo) {
 		return (args) -> {
 			log.info("save some categories");
 			cRepository.save(new Category("Fantasy"));
@@ -50,6 +51,12 @@ public class BookstoreApplication {
 			for (Book book : brepository.findAll()) {
 				log.info(book.toString());
 			}
+
+			AppUser user1 = new AppUser("user", "$2y$10$lwe.tT04qaA23g7wpPABYOzBhnMzruF3GcNStWQNIHqK9axUyR312", "USER");
+			AppUser user2 = new AppUser("admin", "$2y$10$X3r1h7F0GE.P6FmzJddkvOZe0ADpnrF9fDARqWrKGJaaqpTAMxPfS", "ADMIN");
+			AUrepo.save(user1);
+			AUrepo.save(user2);
+			
 		};
 	}
 
