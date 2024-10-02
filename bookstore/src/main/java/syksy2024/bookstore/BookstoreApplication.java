@@ -45,6 +45,7 @@ public class BookstoreApplication {
 			brepository.save(new Book("Harry Potter and the Order of the Phoenix", "J.K. Rowling", 2003, "0-7475-5100-6", 19.90, cRepository.findByName("Fantasy").get(0)));
 			brepository.save(new Book("Harry Potter and the Half-Blood Prince", "J.K. Rowling", 2005, "0-7475-8108-8", 19.90, cRepository.findByName("Fantasy").get(0)));
 			brepository.save(new Book("Harry Potter and the Deathly Hallows", "J.K. Rowling", 2007, "0-7475-9105-9", 14.90, cRepository.findByName("Fantasy").get(0)));
+			brepository.save(new Book("Idan testikirja", "Ida Kabris", 2024, "0-7475-9105-9", 14.90, cRepository.findByName("Horror").get(0)));
 
 
 			log.info("fetch all books");
