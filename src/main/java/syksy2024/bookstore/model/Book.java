@@ -1,11 +1,13 @@
 package syksy2024.bookstore.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -15,6 +17,7 @@ import jakarta.validation.constraints.Size;
 //Source for validation int: https://stackoverflow.com/questions/41749278/spring-validation-of-integer-attribute
 
 @Entity
+@Table(name="Book")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,24 +25,29 @@ public class Book {
 
     @NotEmpty(message = "Book title is required")
     @Size(min=2, max=50)
+    @Column(name = "title", nullable = false)
     private String title;
 
     @NotEmpty(message = "Author name is required")
     @Size(min=2, max=50)
+    @Column(name = "author", nullable = false)
     private String author;
 
     @NotNull
     @Min(1)
     @Max(2024)
+    @Column(name = "publication_year", nullable = false)
     private int publicationYear;
 
     @Size(min=2, max=50)
+    @Column(name = "isbn", nullable = false)
     private String isbn;
 
+    @Column(name = "price", nullable = false)
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId")
+    @JoinColumn(name = "categoryid")
     private Category category;
 
     

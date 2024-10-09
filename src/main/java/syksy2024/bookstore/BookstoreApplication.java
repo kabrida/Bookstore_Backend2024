@@ -21,10 +21,10 @@ public class BookstoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
-
+/* 
 		@Bean
 	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository cRepository, AppUserRepository AUrepo) {
-		return (args) -> {
+		  return (args) -> {
 			log.info("save some categories");
 			cRepository.save(new Category("Fantasy"));
 			cRepository.save(new Category("Thriller"));
@@ -59,6 +59,9 @@ public class BookstoreApplication {
 			AUrepo.save(user2);
 			
 		};
+		
 	}
+		*/
+	
 
 }

@@ -1,0 +1,43 @@
+DROP TABLE IF EXISTS appuser; 
+DROP TABLE IF EXISTS book; 
+DROP TABLE IF EXISTS category;
+
+CREATE TABLE appuser
+(id BIGSERIAL PRIMARY KEY
+,username VARCHAR(250) NOT NULL
+,password_hash VARCHAR(250) NOT NULL
+, role  VARCHAR(100) NOT NULL);
+INSERT INTO AppUser (username, password_hash, role) VALUES ('user', '$2y$10$lwe.tT04qaA23g7wpPABYOzBhnMzruF3GcNStWQNIHqK9axUyR312', 'USER');
+INSERT INTO AppUser (username, password_hash, role) VALUES ('admin', '$2y$10$X3r1h7F0GE.P6FmzJddkvOZe0ADpnrF9fDARqWrKGJaaqpTAMxPfS', 'ADMIN');
+
+CREATE TABLE category
+(id BIGSERIAL PRIMARY KEY
+,name VARCHAR(50) NOT NULL);
+
+INSERT INTO Category (name) VALUES ('Fantasy');
+INSERT INTO Category (name) VALUES ('Thriller');
+INSERT INTO Category (name) VALUES ('Romance');
+INSERT INTO Category (name) VALUES ('Horror');
+
+CREATE TABLE book 
+(id BIGSERIAL PRIMARY KEY
+, title VARCHAR(50) NOT NULL
+, author VARCHAR(50) NOT NULL
+, publication_year INTEGER
+, isbn VARCHAR(50) NOT NULL
+, price DOUBLE PRECISION
+, categoryid BIGINT
+, FOREIGN KEY (categoryid) REFERENCES category(id));
+
+INSERT INTO Book (title, author, publication_year, isbn, price, categoryid) VALUES ('Harry Potter and the Philosopher''s Stone', 'J.K. Rowling', 1997, '978-0-7475-3269-9', 24.90, (SELECT id FROM Category WHERE name = 'Fantasy'));
+INSERT INTO Book (title, author, publication_year, isbn, price, categoryid) VALUES ('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', 1998, '0-7475-3849-2', 24.90, (SELECT id FROM Category WHERE name = 'Fantasy'));
+INSERT INTO Book (title, author, publication_year, isbn, price, categoryid) VALUES ('Harry Potter and the Prisoner of Azkaban', 'J.K. Rowling', 1999, '0-7475-4215-5', 22.90, (SELECT id FROM Category WHERE name = 'Fantasy'));
+INSERT INTO Book (title, author, publication_year, isbn, price, categoryid) VALUES ('Harry Potter and the Goblet of Fire', 'J.K. Rowling', 2000, '0-7475-5079-4', 22.90, (SELECT id FROM Category WHERE name = 'Fantasy'));
+INSERT INTO Book (title, author, publication_year, isbn, price, categoryid) VALUES ('Harry Potter and the Order of the Phoenix', 'J.K. Rowling', 2003, '0-7475-5100-6', 19.90, (SELECT id FROM Category WHERE name = 'Fantasy'));
+INSERT INTO Book (title, author, publication_year, isbn, price, categoryid) VALUES ('Harry Potter and the Half-Blood Prince', 'J.K. Rowling', 2005, '0-7475-8108-8', 19.90, (SELECT id FROM Category WHERE name = 'Fantasy'));
+INSERT INTO Book (title, author, publication_year, isbn, price, categoryid) VALUES ('Harry Potter and the Deathly Hallows', 'J.K. Rowling', 2007, '0-7475-9105-9', 14.90, (SELECT id FROM Category WHERE name = 'Fantasy'));
+
+
+SELECT * FROM appuser;
+SELECT * FROM book;
+SELECT * FROM category;

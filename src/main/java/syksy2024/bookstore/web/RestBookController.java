@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import syksy2024.bookstore.model.Book;
 import syksy2024.bookstore.model.BookRepository;
 import syksy2024.bookstore.model.CategoryRepository;
@@ -40,6 +41,7 @@ public class RestBookController {
     }
 
     @PostMapping("/book")
+    @ResponseStatus(HttpStatus.CREATED)
     Book newBook(@RequestBody Book newBook) {
         log.info("Save a new book" + newBook);
         return bRepo.save(newBook);
